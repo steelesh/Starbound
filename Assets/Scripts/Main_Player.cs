@@ -5,11 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Main_Player : MonoBehaviour
 {
-
     Rigidbody2D rb;
     float movement = 0f;
     float movementSpeed = 8f;
     bool facingRight = true;
+    bool hasJumped = false;
+    public Animator animator;
 
     void Start()
     {
@@ -19,13 +20,20 @@ public class Main_Player : MonoBehaviour
     void Update()
     {
         movement = Input.GetAxis("Horizontal") * movementSpeed;
-        if (movement < 0f && facingRight)
+        animator.SetFloat("Speed", Mathf.Abs(movement));
+        if (movement > 0f && facingRight)
         {
             Flip();
         }
-        else if (movement > 0f && !facingRight)
+        else if (movement < 0f && !facingRight)
         {
             Flip();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && !hasJumped)
+        {
+            InitialJump();
+            animator.SetBool("isJumping", true);
         }
     }
 
@@ -42,5 +50,20 @@ public class Main_Player : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    private void InitialJump()
+    {
+        if (!hasJumped)
+        {
+            float jumpForce = 10f;
+            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            hasJumped = true;
+        }
+    }
+
+    public void stopJumpAnim()
+    {
+        animator.SetBool("isJumping", false);
     }
 }
