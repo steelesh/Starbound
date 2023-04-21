@@ -339,8 +339,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faaa6d719e53d4ccebdc3c7a3131d6b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeTime: 42
-  sceneName: GameScene
+  changeTime: 30
+  sceneName: DialogueScene
 --- !u!4 &101479658
 Transform:
   m_ObjectHideFlags: 0
