@@ -15,9 +15,9 @@ public class Background_Scroller : MonoBehaviour
     {
         transform.position += new Vector3(-0.5f * Time.deltaTime, 0);
 
-        if(transform.position.x < -22.4f)
+        if(transform.position.x < -23.12f)
         {
-            transform.position = new Vector3(22.4f, transform.position.y);
+            transform.position = new Vector3(23.12f, transform.position.y);
         }
     }
 }
