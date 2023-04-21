@@ -9,12 +9,14 @@ public class Main_Player : MonoBehaviour
     float movement = 0f;
     float movementSpeed = 8f;
     bool facingRight = true;
-    bool hasJumped = false;
     public Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        float jumpForce = 22f;
+        rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+        animator.SetBool("isJumping", true);
     }
 
     void Update()
@@ -28,12 +30,6 @@ public class Main_Player : MonoBehaviour
         else if (movement < 0f && !facingRight)
         {
             Flip();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) && !hasJumped)
-        {
-            InitialJump();
-            animator.SetBool("isJumping", true);
         }
     }
 
@@ -50,20 +46,5 @@ public class Main_Player : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
-    }
-
-    private void InitialJump()
-    {
-        if (!hasJumped)
-        {
-            float jumpForce = 10f;
-            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-            hasJumped = true;
-        }
-    }
-
-    public void stopJumpAnim()
-    {
-        animator.SetBool("isJumping", false);
     }
 }
