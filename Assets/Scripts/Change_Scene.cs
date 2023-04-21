@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Playables;
 
 public class Change_Scene : MonoBehaviour
 {
-    public float changeTime;
     public string sceneName;
+    public PlayableDirector playableDirector;
 
     private void Update()
     {
-        changeTime -= Time.deltaTime;
-        if (changeTime <= 0)
+        if (playableDirector.state != PlayState.Playing)
         {
             SceneManager.LoadScene(sceneName);
         }
