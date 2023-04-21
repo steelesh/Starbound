@@ -5,13 +5,15 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Main_Player : MonoBehaviour
 {
+    public CountdownTimer countdownTimer;
     Rigidbody2D rb;
     float movement = 0f;
     float movementSpeed = 8f;
     bool facingRight = true;
     public Animator animator;
+    private bool startGameCalled = false;
 
-    void Start()
+    public void StartGame()
     {
         rb = GetComponent<Rigidbody2D>();
         float jumpForce = 22f;
@@ -21,6 +23,14 @@ public class Main_Player : MonoBehaviour
 
     void Update()
     {
+        if (countdownTimer.timerFinished && !startGameCalled)
+        {
+            StartGame();
+            startGameCalled = true;
+            countdownTimer.timerFinished = false;
+        }
+
+
         movement = Input.GetAxis("Horizontal") * movementSpeed;
         animator.SetFloat("Speed", Mathf.Abs(movement));
         if (movement > 0f && facingRight)
