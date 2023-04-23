@@ -950,8 +950,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 2074139431}
   lines:
-  - 'Astronaut: Oh no, my ship is damaged! I need to get back home, but I don''t
-    know how to repair it.'
+  - 'Astronaut: My ship is damaged! I need to get back home, but I don''t know how
+    to repair it.'
   - 'Alien: I can help you repair your ship, but I need something in return.'
   - 'Astronaut: Really? What do you need?'
   - 'Alien: I need 100 coins. If you collect them, I''ll fix your ship and you can

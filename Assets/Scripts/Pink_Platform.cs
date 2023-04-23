@@ -5,7 +5,7 @@ using UnityEngine;
 public class Pink_Platform : MonoBehaviour
 {
 
-    public float jumpForce = 20f;
+    public float jumpForce = 33f;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
