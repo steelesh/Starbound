@@ -14,6 +14,7 @@ public class Main_Player : MonoBehaviour
     private bool startGameCalled = false;
     public AudioClip jumpStartSound;
     private AudioSource audioSource;
+    public GameObject gameOverPanel;
 
     void Awake()
     {
@@ -41,6 +42,7 @@ public class Main_Player : MonoBehaviour
             countdownTimer.timerFinished = false;
         }
         ScreenWrap();
+        CheckGameOver();
         movement = Input.GetAxis("Horizontal") * movementSpeed;
         animator.SetFloat("Speed", Mathf.Abs(movement));
         if (movement > 0f && facingRight)
@@ -81,6 +83,17 @@ public class Main_Player : MonoBehaviour
         else if (offScreenLeft)
         {
             transform.position = Camera.main.ViewportToWorldPoint(new Vector3(1, viewportPosition.y, viewportPosition.z));
+        }
+    }
+    private void CheckGameOver()
+    {
+        float gameOverOffset = 2.0f;
+        float cameraBottom = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).y - gameOverOffset;
+
+        if (transform.position.y < cameraBottom)
+        {
+            gameOverPanel.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 }
