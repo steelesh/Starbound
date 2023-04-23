@@ -15,6 +15,7 @@ public class Main_Player : MonoBehaviour
     public AudioClip jumpStartSound;
     private AudioSource audioSource;
     public GameObject gameOverPanel;
+    public bool canMove = false;
 
     void Awake()
     {
@@ -29,7 +30,6 @@ public class Main_Player : MonoBehaviour
         float jumpForce = 30f;
         rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         animator.SetBool("isJumping", true);
-
         audioSource.Play();
     }
 
@@ -43,23 +43,30 @@ public class Main_Player : MonoBehaviour
         }
         ScreenWrap();
         CheckGameOver();
-        movement = Input.GetAxis("Horizontal") * movementSpeed;
-        animator.SetFloat("Speed", Mathf.Abs(movement));
-        if (movement > 0f && facingRight)
+
+        if (startGameCalled)
         {
-            Flip();
-        }
-        else if (movement < 0f && !facingRight)
-        {
-            Flip();
+            movement = Input.GetAxis("Horizontal") * movementSpeed;
+            animator.SetFloat("Speed", Mathf.Abs(movement));
+            if (movement > 0f && facingRight)
+            {
+                Flip();
+            }
+            else if (movement < 0f && !facingRight)
+            {
+                Flip();
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        Vector2 velocity = rb.velocity;
-        velocity.x = movement;
-        rb.velocity = velocity;
+        if (startGameCalled)
+        {
+            Vector2 velocity = rb.velocity;
+            velocity.x = movement;
+            rb.velocity = velocity;
+        }
     }
 
     private void Flip()
