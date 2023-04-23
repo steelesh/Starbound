@@ -17,6 +17,7 @@ public class Main_Player : MonoBehaviour
 
     void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = jumpStartSound;
         audioSource.playOnAwake = false;
@@ -24,7 +25,6 @@ public class Main_Player : MonoBehaviour
 
     public void StartGame()
     {
-        rb = GetComponent<Rigidbody2D>();
         float jumpForce = 30f;
         rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         animator.SetBool("isJumping", true);
