@@ -5,7 +5,7 @@ using UnityEngine;
 public class White_Platform : MonoBehaviour
 {
 
-    public float jumpForce = 23f;
+    public float jumpForce;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

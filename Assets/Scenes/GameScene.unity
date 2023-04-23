@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1154771088525561754, guid: a52cff28153bd415ea9c67e1b5a62885, type: 3}
+      propertyPath: jumpForce
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 527063704498741623, guid: a52cff28153bd415ea9c67e1b5a62885, type: 3}
       propertyPath: m_Name
       value: Platform_Pink
@@ -804,7 +808,7 @@ MonoBehaviour:
   pinkPlatform: {fileID: 1537535902}
   playerTransform: {fileID: 1274967555}
   spawnHeightOffset: 35
-  numberOfPlatforms: 1000
+  numberOfPlatforms: 2000
   pinkPlatformProbability: 0.2
 --- !u!1 &1524495976
 GameObject:
@@ -913,6 +917,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2585390916052094673, guid: e6e00dedb2ef747ddb46b795a637efe4, type: 3}
+      propertyPath: jumpForce
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3301357772785241860, guid: e6e00dedb2ef747ddb46b795a637efe4, type: 3}
       propertyPath: m_Points.Array.data[0].x
       value: -0.7185713
