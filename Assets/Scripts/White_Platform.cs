@@ -6,6 +6,15 @@ public class White_Platform : MonoBehaviour
 {
 
     public float jumpForce;
+    public AudioClip landingSound;
+    private AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = landingSound;
+        audioSource.playOnAwake = false;
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -19,6 +28,8 @@ public class White_Platform : MonoBehaviour
                 velocity.y = jumpForce;
                 rb.velocity = velocity;
                 player.animator.SetBool("isJumping", true);
+
+                audioSource.Play();
             }
         }
     }

@@ -12,6 +12,15 @@ public class Main_Player : MonoBehaviour
     bool facingRight = true;
     public Animator animator;
     private bool startGameCalled = false;
+    public AudioClip jumpStartSound;
+    private AudioSource audioSource;
+
+    void Awake()
+    {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = jumpStartSound;
+        audioSource.playOnAwake = false;
+    }
 
     public void StartGame()
     {
@@ -19,6 +28,8 @@ public class Main_Player : MonoBehaviour
         float jumpForce = 30f;
         rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         animator.SetBool("isJumping", true);
+
+        audioSource.Play();
     }
 
     void Update()
