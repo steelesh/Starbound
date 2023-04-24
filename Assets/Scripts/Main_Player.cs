@@ -103,4 +103,8 @@ public class Main_Player : MonoBehaviour
             Time.timeScale = 0f;
         }
     }
+    public void PauseAndShowPanel()
+    {
+        Coin_Counter.instance.winPanel.SetActive(!Coin_Counter.instance.winPanel.activeSelf);
+    }
 }
